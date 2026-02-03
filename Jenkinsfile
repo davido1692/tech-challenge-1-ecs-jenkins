@@ -31,17 +31,17 @@ pipeline {
       }
     }
 
-    stage('Login ECR') {
-      steps {
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
-          sh '''
-            set -e
-            aws sts get-caller-identity
-            aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
-          '''
-        }
-      }
-    }
+stage('Deploy ECS') {
+  steps {
+    sh '''
+      set -e
+      export AWS_PAGER=""
+      aws ecs update-service --region "$AWS_REGION" --cluster "$ECS_CLUSTER" --service "$ECS_BACKEND_SERVICE" --force-new-deployment
+      aws ecs update-service --region "$AWS_REGION" --cluster "$ECS_CLUSTER" --service "$ECS_FRONTEND_SERVICE" --force-new-deployment
+    '''
+  }
+}
+
 
     stage('Build Images') {
       steps {
