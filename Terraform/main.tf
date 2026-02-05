@@ -264,7 +264,7 @@ resource "aws_lb" "frontend" {
 
 resource "aws_lb_target_group" "frontend" {
   name        = "${local.name}-tg-frontend"
-  port        = var.container_port_frontend
+  port        = 3000
   protocol    = "HTTP"
   vpc_id      = aws_vpc.this.id
   target_type = "ip"
