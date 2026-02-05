@@ -12,8 +12,12 @@ pipeline {
 
     // ECS (confirmed from your output)
     ECS_CLUSTER          = "tc1-cluster"
-    ECS_BACKEND_SERVICE  = "tc1-backend-svc"
-    ECS_FRONTEND_SERVICE = "tc1-frontend-svc"
+    // ECS_BACKEND_SERVICE  = "tc1-backend-svc"
+    // ECS_FRONTEND_SERVICE = "tc1-frontend-svc"
+
+    ECS_BACKEND_SERVICE  = "tc1-svc-backend"
+    ECS_FRONTEND_SERVICE = "tc1-svc-frontend"
+
 
     // ALB (confirmed from your output)
     ALB_NAME = "k8s-default-flaskhel-61550f12c3"
