@@ -359,7 +359,7 @@ resource "aws_ecs_task_definition" "frontend" {
       image     = local.frontend_image
       essential = true
       portMappings = [
-        { containerPort = var.container_port_frontend, hostPort = var.container_port_frontend, protocol = "tcp" }
+        { containerPort = 3000, hostPort = 3000, protocol = "tcp" }
       ]
       environment = [
         # If your frontend reads API_URL at runtime you can pass it here,
